@@ -43,6 +43,10 @@ f = open('clients-data.json', "r")
 clients_data = json.load(f)
 f.close()
 
+f = open('prefixes', 'r')
+prefixes = f.read()
+f.close()
+
 
 async def main():
     global clients_data
@@ -90,7 +94,7 @@ async def main():
                     id = event.chat_id  # id беседы в который был ивент
                     print(msg, id)
                     if len(msg) > 1:
-                        if msg.lower()[0] == '+':
+                        if msg.lower()[0] in prefixes:
                             uname = vk.method("users.get", {"user_ids": from_u})[0]['first_name']
                             message = '[' + uname + ']' + msg[1::]
                             print('[' + uname + ']' + msg[1::])
