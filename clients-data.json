@@ -1,1 +1,21 @@
-{"chats": [{"chat_id": 12, "client": "d1e57a70c7f3581b4e5597e6a3c7182f149f86a7", "char": "JsWoXNgvU-oFEhoszaB0WrZFGpRx8PLx6E3JMXF5MEw"}, {"chat_id": 14, "client": "9448d41bf155ec6930b0da529ad7fa60589f2422", "char": "Hpk0GozjACb3mtHeAaAMb0r9pcJGbzF317I_Ux_ALOA"}]}
+{
+  "chats": [
+    {
+      "chat_id": 12,
+      "client": "d1e57a70c7f3581b4e5597e6a3c7182f149f86a7",
+      "char": "JsWoXNgvU-oFEhoszaB0WrZFGpRx8PLx6E3JMXF5MEw"
+    },
+    {
+      "chat_id": 14,
+      "client": "9448d41bf155ec6930b0da529ad7fa60589f2422",
+      "char": "Hpk0GozjACb3mtHeAaAMb0r9pcJGbzF317I_Ux_ALOA"
+    }
+  ],
+  "users": [
+    {
+      "userid": 354398620,
+      "client": "d1e57a70c7f3581b4e5597e6a3c7182f149f86a7",
+      "char": "JsWoXNgvU-oFEhoszaB0WrZFGpRx8PLx6E3JMXF5MEw"
+    }
+  ]
+}

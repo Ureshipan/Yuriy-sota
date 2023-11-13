@@ -134,6 +134,8 @@ async def main():
                                     message = ''
                             else:
                                 message = ''
+                        elif event.from_user:
+                            from_u = event.user_id
                         else:
                             id = -1
                 if message != '' and id in list(serving_clients.keys()):
