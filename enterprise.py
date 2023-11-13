@@ -21,22 +21,6 @@ def captcha_handler(captcha):
     return captcha.try_again(key)
 
 
-
-
-
-async def tobfromb(client, char, chat, author, message, chat_id):
-    async with client.connect() as chat2:
-        data = await chat2.send_message(
-            char, chat['chats'][0]['chat_id'],
-            message, author
-        )
-
-    name = data['turn']['author']['name']
-    text = data['turn']['candidates'][0]['raw_content']
-
-    vk.method('messages.send', {'chat_id': id, 'message': text, 'random_id': 0})
-
-
 f = open('clients-data.json', "r")
 clients_data = json.load(f)
 f.close()
