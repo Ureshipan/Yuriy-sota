@@ -30,6 +30,32 @@ prefixes = f.read()
 f.close()
 
 
+def update_clients(chat, ukey, cid, uorch):
+    global clients_data
+    replaced = False
+    if uorch == "chat":
+        spis = "chats"
+        ids = "chat_id"
+    else:
+        spis = "users"
+        ids = "userid"
+    for i in range(len(clients_data[spis])):
+        if clients_data[spis][i][ids] == chat:
+            replaced = True
+            clients_data[spis][i]["client"] = ukey
+            clients_data[spis][i]["char"] = cid
+            break
+    if not replaced:
+        clients_data[spis].append({
+            ids: chat,
+            "client": ukey,
+            "char": cid
+        })
+    f = open('clients-data.json', "w")
+    json.dump(clients_data, f)
+    f.close()
+
+
 async def main():
     global clients_data
     while True:
