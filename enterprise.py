@@ -116,7 +116,9 @@ async def main():
                                     print('[' + name + ']' + msg[1::])
                                 elif msg[0] == 'd' and len(msg) < 10:
                                     dice = int(msg[1:])
-                                    message = str(randint(1, dice))
+                                    text = str(randint(1, dice))
+                                    vk.method('messages.send', {'chat_id': id, 'message': text, 'random_id': 0})
+                                    message = ''
                                 elif msg[:11] == '/Настройка:':
                                     message = ''
                                     nast = msg.split('\n')
