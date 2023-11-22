@@ -114,7 +114,7 @@ async def main():
                                     name = user[0]['first_name'] + ' ' + user[0]['last_name']
                                     message = '[' + name + ']' + msg[1::]
                                     print('[' + name + ']' + msg[1::])
-                                elif msg[0] == 'd' and len(msg) < 10:
+                                elif msg[0].lower() == 'd' and len(msg) < 10:
                                     dice = int(msg[1:])
                                     text = str(randint(1, dice))
                                     vk.method('messages.send', {'chat_id': id, 'message': text, 'random_id': 0})
