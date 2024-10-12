@@ -5,6 +5,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 import json
 import copy
 from random import randint
+import whatismyip
 
 token = 'vk1.a.rl_zP_q_m0BhgbTtYx8j5HyBEamzZOfbfMd9hBO1Lk4qZQm8BbRizkLqTXEI1xrMG_ACeEQZzdPrWyuBayg0alaYs26INtPXh0hvKSNvx90SkW7KizTH0_vXmC_1lXAGYe9sI0vPzUoYp63bFOZDSTWCcv22QpEIwHfG6Gkzjwsq5AWWih3MTiUTVzVKqHocsntFtM-Rqv-XX6VRhKFNKg'
 token2 = 'vk1.a.QxqEoP9LpYbRKbBO1adJPXuvYOWmBELWaZHN0RM1SJgbbm3k1xB3bN6zWvR6JNF7UtCjN2H97JpJIOSVcr2X3J8v64jAu4iC-uSHnEIe90goKffH8LyYRd6Ht-6SBSKWc-jmRo1P9mSJKUgsa9OYpNoeJ92yctxcKDSSECOODb2TyF681ZjVRCaN0HV7P7koPhzEWdjDnkqFdozoINbJMg'
@@ -119,7 +120,11 @@ async def main():
                                     text = str(randint(1, dice))
                                     vk.method('messages.send', {'chat_id': id, 'message': text, 'random_id': 0})
                                     message = ''
-                                elif msg[:11] == '/Настройка:':
+                                elif msg.lower() == '/ip':
+                                    text = whatismyip.whatismyipv4()
+                                    vk.method('messages.send', {'chat_id': id, 'message': text, 'random_id': 0})
+                                    message = ''
+                                elif msg[:11].lower() == '/настройка:':
                                     message = ''
                                     nast = msg.split('\n')
                                     clients_data["chats"].append({
