@@ -51,7 +51,6 @@ def save_yml_data(data, path):
         yaml.safe_dump(data, file)
 
 
-
 async def main():
     static_data = load_yml_data(DB_PATH)
     sessions = {}
@@ -63,6 +62,10 @@ async def main():
             vk = vk_api.VkApi(captcha_handler=captcha_handler,
                               token=vk_token)
             longpoll = VkLongPoll(vk)
+
+            for chat in static_data['group_chats'].keys():
+                if static_data['group_chats']['token'] != 0:
+                    
 
         except Exception as e:
             logger.error(f'{e}')
