@@ -36,7 +36,7 @@ def get_token_by_link_and_email(link, email):
     return token
 
 
-def load_yml_data(path, base_form=dict(mail_boxes={}, group_chats={}, personal_chats={})):
+def load_yml_data(path, base_form=dict(group_chats={}, personal_chats={})):
     if os.path.exists(path):
         with open(path, 'r') as file:
             return yaml.safe_load(file)
@@ -64,7 +64,24 @@ async def main():
             longpoll = VkLongPoll(vk)
 
             for chat in static_data['group_chats'].keys():
-                if static_data['group_chats']['token'] != 0:
+                chat_d = static_data['group_chats'][chat]
+                if chat_d['token'] != 0:
+                    try:
+                        client = aiocai.Client(chat_d['token'])
+                        user = await client.get_me()
+                        try:
+                            ai_chat = client.get_chat(chat_d['char'])
+                            sessions[chat] = dict(
+                                                client=user,
+                                                chat=ai_chat
+                                                )
+                        except:
+                            static_data['group_chats'][chat]['errors'] = "Can't get chat with that character, mabe you need to create one."
+
+                        
+                    except Exception as e:
+                        logger.error(f'{e} in group chat {chat}')
+                
                     
 
         except Exception as e:
