@@ -9,6 +9,12 @@ import yaml
 
 DB_PATH = 'data/db.yml'
 
+PREFIXES = {
+    'talk': ['.', '+', 'yura ', 'юра '],
+    'setup': ['/setup', '/настройка'],
+    'key': ['/key ', '/ключ']
+}
+
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='logs/lastest.log', level=logging.DEBUG)
@@ -70,7 +76,7 @@ async def main():
                         client = aiocai.Client(chat_d['token'])
                         user = await client.get_me()
                         try:
-                            ai_chat = client.get_chat(chat_d['char'])
+                            ai_chat = await client.get_chat(chat_d['char'])
                             sessions[chat] = dict(
                                                 client=user,
                                                 chat=ai_chat
@@ -81,8 +87,38 @@ async def main():
                         
                     except Exception as e:
                         logger.error(f'{e} in group chat {chat}')
-                
-                    
+
+            for event in longpoll.listen():
+                if event.type == VkEventType.MESSAGE_NEW:
+                    if event.to_me:
+                        if event.from_chat:
+                            obrabotka = dict(
+                                user_id=event.user_id, 
+                                text=event.text, 
+                                chat_id=event.chat_id,
+                                type='none',
+                                prefix='',
+                                message='')
+                            if len(obrabotka['text']) > 1:
+                                for typ in PREFIXES.keys():
+                                    for prefix in PREFIXES[typ]:
+                                        if obrabotka['text'][:len(prefix)].lower() == prefix:
+                                            obrabotka['type'] = typ
+                                            obrabotka['prefix'] = prefix
+                                            break
+                                    if obrabotka['type'] != 'none':
+                                        break
+                                if obrabotka['type'] != 'none':
+                                    if obrabotka['type'] == 'talk':
+                                        if static_data['group_chats'][obrabotka['chat_id']]['token'] != 0:
+                                            user = vk.method("users.get", {"user_ids": obrabotka['user_id']})
+                                            name = user[0]['first_name'] + ' ' + user[0]['last_name']
+                                            obrabotka['message'] = '{' + name + '}: ' + obrabotka['text'][len(obrabotka['prefix'])::]
+
+                                    elif obrabotka['type'] == 'key':
+                                        if static_data['group_chats'][obrabotka['chat_id']]['email'] != 0:
+                                            
+
 
         except Exception as e:
             logger.error(f'{e}')
