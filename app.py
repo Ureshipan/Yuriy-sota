@@ -63,14 +63,16 @@ async def main():
     vk_token = ''
     while True:
         try:
+            logger.info(f'New cicle')
             with open('vk_key.txt', 'r') as file:
                 vk_token = file.read()
             vk = vk_api.VkApi(captcha_handler=captcha_handler,
                               token=vk_token)
             longpoll = VkLongPoll(vk)
-
+            logger.info(f'VK connect succeful, going to cai logic..')
             for chat in static_data['group_chats'].keys():
                 chat_d = static_data['group_chats'][chat]
+                logger.info(f'Working with group chat {chat} with token {chat_d['token']}')
                 if chat_d['token'] != 0:
                     try:
                         client = aiocai.Client(chat_d['token'])
@@ -81,12 +83,14 @@ async def main():
                                                 client=user,
                                                 chat=ai_chat
                                                 )
-                        except:
+                            logger.info('Session was created succefully')
+                        except Exception as e:
+                            logger.error(f'{e} With creation connection for this chat')
                             static_data['group_chats'][chat]['errors'] = "Can't get chat with that character, mabe you need to create one."
 
                         
                     except Exception as e:
-                        logger.error(f'{e} in group chat {chat}')
+                        logger.error(f'{e} for this chat')
 
             for event in longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW:
