@@ -19,7 +19,7 @@ PREFIXES = {
 INSTUCT = 'google.com'
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename='logs/lastest.log', level=logging.DEBUG)
+logging.basicConfig(filename='logs/lastest.log', level=logging.INFO)
 
 
 def captcha_handler(captcha):
@@ -106,6 +106,8 @@ async def main():
                                 prefix='',
                                 message='')
                             if len(obrabotka['text']) > 1:
+                                if obrabotka['chat_id'] not in static_data['group_chats'].keys():
+                                    static_data['group_chats'][obrabotka['chat_id']] = dict(email="", token=0, char="", error="")
                                 for typ in PREFIXES.keys():
                                     for prefix in PREFIXES[typ]:
                                         if obrabotka['text'][:len(prefix)].lower() == prefix:
@@ -126,23 +128,38 @@ async def main():
 
                                     elif obrabotka['type'] == 'setup':
                                         tmp_txt = obrabotka['text'].split('\n')
-                                        static_data['group_chats'][obrabotka['chat_id']]['email'] = tmp_txt[1]
-                                        static_data['group_chats'][obrabotka['chat_id']]['char'] = tmp_txt[2]
-                                        if static_data['group_chats'][obrabotka['chat_id']]['token'] != 0:
+                                        try:
+                                            static_data['group_chats'][obrabotka['chat_id']]['email'] = tmp_txt[1].replace(' ', '')
+                                            static_data['group_chats'][obrabotka['chat_id']]['char'] = tmp_txt[2].replace(' ', '')
+                                            save_yml_data(static_data, DB_PATH)
+                                        except Exception as e:
+                                            logger.error(f'{obrabotka['chat_id']}|Wrong format of setup message')
+                                            mes = f'Проверьте правильность введённой команды, а затем повторите попытку. Для обращения в поддержку:\nВремя-{datetime.datetime.now().strftime("%d/%m/%Y-%H:%M:%S")}\nID чата-{obrabotka["chat_id"]}'
+                                            vk.method('messages.send', {'chat_id': obrabotka["chat_id"], 'message': mes, 'random_id': 0})
+                                        if static_data['group_chats'][obrabotka['chat_id']]['token'] == 0:
                                             try:
                                                 code = sendCode(static_data['group_chats'][obrabotka['chat_id']]['email'])
                                                 mes = 'На ваш email отправлено письмо подтверждния от characterAI. Не переходите по ссылке в нём, а скопируйте её и отправьте её мне в формате "/key *****". \n(Ссылка в письме может выглядеть как кнопка, но её всё равно можно скопировать)'
                                                 vk.method('messages.send', {'chat_id': obrabotka["chat_id"], 'message': mes, 'random_id': 0})
                                                 logger.info(f'{obrabotka['chat_id']}|Message with code is sent to {static_data['group_chats'][obrabotka['chat_id']]['email']}')
                                             except Exception as e:
-                                                logger.info(f'{obrabotka['chat_id']}|Message wasnt sent to email {static_data['group_chats'][obrabotka['chat_id']]['email']} due to error {e}')
+                                                logger.error(f'{obrabotka['chat_id']}|Message wasnt sent to email {static_data['group_chats'][obrabotka['chat_id']]['email']} due to error {e}')
                                                 mes = f'Не удалось отправить код подтверждения на ваш email. Проверьте его правильность и формат команды, а затем повторите попытку. Для обращения в поддержку:\nВремя-{datetime.datetime.now().strftime("%d/%m/%Y-%H:%M:%S")}\nID чата-{obrabotka["chat_id"]}'
                                                 vk.method('messages.send', {'chat_id': obrabotka["chat_id"], 'message': mes, 'random_id': 0})
 
                                     elif obrabotka['type'] == 'key':
-                                        if static_data['group_chats'][obrabotka['chat_id']]['email'] != 0:
-                                            
-
+                                        if static_data['group_chats'][obrabotka['chat_id']]['email'] != "":
+                                            try:
+                                                link = obrabotka['text'].split('\n')[-1].split()[-1]
+                                                email = static_data['group_chats'][obrabotka['chat_id']]['email']
+                                                token = authUser(link, email)
+                                                static_data['group_chats'][obrabotka['chat_id']]['token'] = token
+                                                save_yml_data(static_data, DB_PATH)
+                                                logger.info(f'{obrabotka['chat_id']}|Succefully got token for chat')
+                                            except Exception as e:
+                                                logger.error(f'{obrabotka['chat_id']}|Cant get token due to {e}')
+                                                mes = f'Не удалось авторизовать Вас, проверьте правильность введённых на прошлом этапе данных и повторите попытку позже. Для обращения в поддержку:\nВремя-{datetime.datetime.now().strftime("%d/%m/%Y-%H:%M:%S")}\nID чата-{obrabotka["chat_id"]}'
+                                                vk.method('messages.send', {'chat_id': obrabotka["chat_id"], 'message': mes, 'random_id': 0})
 
         except Exception as e:
             logger.error(f'{e}')

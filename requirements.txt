@@ -3,3 +3,4 @@ vk-api
 whatismyip
 typing_extensions
 websockets
+pyyaml
