@@ -1,0 +1,42 @@
+DEBUG:asyncio:Using selector: SelectSelector
+INFO:__main__:New cicle
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.vk.com:443
+DEBUG:urllib3.connectionpool:https://api.vk.com:443 "POST /method/messages.getLongPollServer HTTP/11" 200 133
+INFO:__main__:VK connect succeful, going to cai logic..
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): im.vk.com:443
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767672&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767672&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767672&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767672&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767672&wait=25&mode=234&version=3 HTTP/11" 200 64
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767674&wait=25&mode=234&version=3 HTTP/11" 200 64
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767676&wait=25&mode=234&version=3 HTTP/11" 200 64
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767678&wait=25&mode=234&version=3 HTTP/11" 200 249
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767680&wait=25&mode=234&version=3 HTTP/11" 200 64
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767682&wait=25&mode=234&version=3 HTTP/11" 200 167
+DEBUG:urllib3.connectionpool:Resetting dropped connection: api.vk.com
+DEBUG:urllib3.connectionpool:https://api.vk.com:443 "POST /method/messages.send HTTP/11" 200 39
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767683&wait=25&mode=234&version=3 HTTP/11" 200 409
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767686&wait=25&mode=234&version=3 HTTP/11" 200 70
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767687&wait=25&mode=234&version=3 HTTP/11" 200 620
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767688&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767688&wait=25&mode=234&version=3 HTTP/11" 200 47
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767688&wait=25&mode=234&version=3 HTTP/11" 200 64
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767690&wait=25&mode=234&version=3 HTTP/11" 200 251
+DEBUG:urllib3.connectionpool:https://im.vk.com:443 "GET /nim580091168?act=a_check&key=e374cd2eeb054c5487663c4c0b57b0ff7fec3abf8c48e699&ts=1780767692&wait=25&mode=234&version=3 HTTP/11" 200 47
+INFO:__main__:New cicle
+INFO:__main__:VK connect succeful, going to cai logic..
+INFO:__main__:Working with group chat 14 with token 0
+ERROR:__main__:14|Message wasnt sent to email tiptevlad@yandex.ru  due to error INVALID_EMAIL
+INFO:__main__:New cicle
+INFO:__main__:VK connect succeful, going to cai logic..
+INFO:__main__:Working with group chat 14 with token 0
+INFO:__main__:14|Message with code is sent to tiptevlad@yandex.ru
+INFO:__main__:14|Succefully got token for chat

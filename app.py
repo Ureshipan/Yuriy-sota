@@ -12,6 +12,8 @@ DB_PATH = 'data/db.yml'
 
 PREFIXES = {
     'talk': ['.', '+', 'yura ', 'юра '],
+    'email': ['/email'],
+    'char': ['/char'],
     'setup': ['/setup', '/настройка'],
     'key': ['/key ', '/ключ']
 }
